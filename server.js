@@ -8,7 +8,7 @@ var logger = require('morgan');
 require('./config/database');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/movies');
+var movieRouter = require('./routes/movies');
 
 var server = express();
 
@@ -23,7 +23,7 @@ server.use(cookieParser());
 server.use(express.static(path.join(__dirname, 'public')));
 
 server.use('/', indexRouter);
-server.use('/users', usersRouter);
+server.use('/movies', movieRouter);
 
 // catch 404 and forward to error handler
 server.use(function(req, res, next) {
