@@ -12,6 +12,8 @@ router.get('/new', movieCtrl.new);
 // using POST method
 
 router.post('/', movieCtrl.create);
+
+// http://localhost:3000/movies/index
 router.get('/', movieCtrl.index);
 
 module.exports = router;

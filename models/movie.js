@@ -8,6 +8,8 @@ const movieSchema = new Schema({
     mpaaRating: String,
     cast : [String],
     nowShowing: Boolean
+},{
+    timestamps : true
 });
 
 module.exports = mongoose.model('Movie',movieSchema);

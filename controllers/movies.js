@@ -5,6 +5,7 @@ const Movie = require('../models/movie');
 function index(req, res){
     // http://localhost:3000/movies/index
     // find({}) means find everything
+    // https://mongoosejs.com/docs/api.html#model_Model.find
     Movie.find({}, function (err, movies){
         res.render('movies/index',{
             movies
@@ -32,6 +33,8 @@ function create(req, res){
     movie.save(function (error){
         if(error) return res.render('movies/new');
         console.log(movie);
+        // if we save the movie object then return the user
+        // to the index page
         res.redirect('/movies')
     });
 }
