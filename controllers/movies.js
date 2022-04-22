@@ -32,7 +32,7 @@ function create(req, res){
     movie.save(function (error){
         if(error) return res.render('movies/new');
         console.log(movie);
-        res.redirect('movies/new')
+        res.redirect('/movies')
     });
 }
 
