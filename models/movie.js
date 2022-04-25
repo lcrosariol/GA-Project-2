@@ -1,15 +1,21 @@
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-const Schema = mongoose.Schema;
-
-const movieSchema = new Schema({
-    title: String,
-    releaseYear: Number,
-    mpaaRating: String,
-    cast : [String],
-    nowShowing: Boolean
-},{
-    timestamps : true
+var movieSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  releaseYear: {
+    type: Number,
+    default: function () {
+      return new Date().getFullYear();
+    }
+  }, mpaaRating: String,
+  cast: [String],
+  nowShowing: { type: Boolean, default: false }
+}, {
+  timestamps: true
 });
 
-module.exports = mongoose.model('Movie',movieSchema);
+module.exports = mongoose.model('Movie', movieSchema);

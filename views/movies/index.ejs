@@ -1,32 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mongoose Movies</title>
-</head>
-<body>
-<h1>Movies Index</h1>
-<table>
-    <thead>
-    <th>Title</th>
-    <th>Release Year</th>
-    <th>MPAA Rating</th>
-    <th>Cast</th>
-    <th>Now Showing</th>
-    </thead>
-    <tbody>
-    <% movies.forEach(movie => { %>
-        <tr>
-            <td><%= movie.title %></td>
-            <td><%= movie.releaseYear %></td>
-            <td><%= movie.mpaaRating %></td>
-            <td><%= movie.cast.join(", ")%></td>
-            <td><%= movie.nowShowing ? 'Yes' : 'No' %></td>
-        </tr>
-    <% }) %>
+<%- include('../partials/header') %>
+<table id="list">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Release<br>Year</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% movies.forEach(function(m) { %>
+      <tr>
+        <td><%= m.title %></td>
+        <td><%= m.releaseYear %></td>
+        <td><a href="/movies/<%= m._id %>">DETAILS</a></td>
+      </tr>
+      <% }); %>
     </tbody>
-</table>
-</body>
-</html>
+  </table>
+  
+<%- include('../partials/footer') %>
