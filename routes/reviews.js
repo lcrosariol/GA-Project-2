@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const reviewsCtrl = require('../controllers/reviews');
 
-const reviewCtrl = require('../controllers/reviews');
-
-// http://localhost:3000/movies = movie controller
-
-// http://localhost:3000/movies/6263111741a184f9cf657813
-router.post('/movies/:id/reviews', reviewCtrl.create);
+router.post('/movies/:id/reviews', reviewsCtrl.create);
 
 module.exports = router;

@@ -1,15 +1,14 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
   content: String,
-  rating : { type: Number, min: 1, max : 5, default:5}
-  }, {
-    timestamps: true
+  rating: {type: Number, min: 1, max: 5, default: 5}
+}, {
+  timestamps: true
 });
 
-var movieSchema = new Schema({
+const movieSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -19,10 +18,10 @@ var movieSchema = new Schema({
     default: function () {
       return new Date().getFullYear();
     }
-  }, mpaaRating: String,
+  },
+  mpaaRating: String,
   cast: [String],
   nowShowing: { type: Boolean, default: false },
-  // this means, movie can have many reviews
   reviews: [reviewSchema]
 }, {
   timestamps: true
