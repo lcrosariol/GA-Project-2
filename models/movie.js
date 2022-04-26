@@ -18,11 +18,10 @@ const movieSchema = new Schema({
     default: function () {
       return new Date().getFullYear();
     }
-  },
-  mpaaRating: String,
-  cast: [{type:Schema.Types.ObjectId, ref:'Performer'}],
-  nowShowing: { type: Boolean, default: false },
-  reviews: [reviewSchema]
+  }, mpaaRating: String,
+  nowShowing: {type: Boolean, default: false},
+  reviews: [reviewSchema],
+  cast: [{type: Schema.Types.ObjectId, ref: 'Performer'}]
 }, {
   timestamps: true
 });

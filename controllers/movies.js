@@ -17,9 +17,17 @@ function index(req, res) {
 function show(req, res) {
   Movie.findById(req.params.id)
       .populate('cast').exec(function(err, movie) {
-    res.render('movies/show', { title: 'Movie Detail', movie });
+    // Performer.find({}).where('_id').nin(movie.cast)
+    Performer.find({_id: {$nin: movie.cast}})
+        .exec(function(err, performers) {
+          console.log(performers);
+          res.render('movies/show', {
+            title: 'Movie Detail', movie, performers
+          });
+        });
   });
 }
+
 
 function newMovie(req, res) {
   res.render('movies/new', { title: 'Add Movie' });

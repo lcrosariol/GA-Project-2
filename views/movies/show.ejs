@@ -9,6 +9,17 @@
   <div><%= movie.mpaaRating %></div>
   <div>Now Showing: </div>
   <div><%= movie.nowShowing ? 'Yes' : 'Nope' %></div>
+
+  <!-- start cast list -->
+  <div>Cast:</div>
+  <ul>
+    <%- movie.cast.map(p =>
+            `<li>${p.name} <small>${p.born.toLocaleDateString()}</small></li>`
+    ).join('') %>
+  </ul>
+
+  <!-- end cast list -->
+
   <!-- start cast list -->
 
   <!-- end cast list -->
