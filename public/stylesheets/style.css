@@ -14,16 +14,6 @@ body {
     "main"
 }
 
-ul {
-  margin: 0 0 1rem;
-  padding: 0;
-  list-style: none;
-}
-
-li {
-  font-weight: bold;
-}
-
 body > nav {
   grid-area: nav;
   background-color: #B8C0C2;
@@ -60,14 +50,13 @@ nav > a {
   border-radius: 5px;
 }
 
-nav > a:hover:not(.active) {
+nav > a:hover {
   color: white;
   background-color: #424748;
 }
 
 nav > a.active {
   color: white;
-  cursor: default;
 }
 
 #new-form {
@@ -139,9 +128,19 @@ table td {
 }
 
 #add-review-form input[type="submit"],
-#add-performer-form input[type="submit"]  {
+#add-performer-form input[type="submit"] {
   width: 10rem;
   grid-column: 2 / 3;
+}
+
+ul {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  font-weight: bold;
 }
 
 
