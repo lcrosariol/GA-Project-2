@@ -20,7 +20,7 @@ const movieSchema = new Schema({
     }
   },
   mpaaRating: String,
-  cast: [String],
+  cast: [{type:Schema.Types.ObjectId, ref:'Performer'}],
   nowShowing: { type: Boolean, default: false },
   reviews: [reviewSchema]
 }, {
