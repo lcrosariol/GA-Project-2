@@ -28,6 +28,10 @@ const p2 = Performer.deleteMany({});
 Promise.all([p1, p2])
     .then(function (results){
         console.log(results);
+        return Performer.create(data.performers);
+    })
+    .then(function (performers){
+        console.log(performers);
     })
     .then(function (){
         process.exit();
