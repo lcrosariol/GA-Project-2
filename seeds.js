@@ -1,13 +1,41 @@
-const p = new Promise(function (resolve, reject){
-    // let value = 100;
-    // resolve(value);
-    setTimeout(function (){
-        let value = 100;
-        resolve(value);
-    }, 2000);
-});
+require('./config/database');
+const Movie = require('./models/movie');
+const Performer = require('./models/performer');
+const data = require('./data');
 
-console.log(p);
-p.then(function (result){
-    console.log("value is " + result);
-})
+// Movie.deleteMany({}).then(
+//     function (res){
+//         console.log(res);
+//         process.exit();
+//     }
+// );
+
+// Movie.deleteMany({})
+//     .then(function(results) {
+//         console.log('Deleted movies: ', results);
+//         return Performer.deleteMany({});
+//     })
+//     .then(function(results) {
+//         console.log('Deleted performers:', results);
+//     })
+//     .then(function() {
+//         process.exit();
+//     });
+
+const p1 = Movie.deleteMany({});
+const p2 = Performer.deleteMany({});
+
+Promise.all([p1, p2])
+    .then(function (results){
+        console.log(results);
+    })
+    .then(function (){
+        process.exit();
+    })
+;
+
+
+
+
+
+
