@@ -27,18 +27,29 @@ const p2 = Performer.deleteMany({});
 
 Promise.all([p1, p2])
     .then(function (results){
-        console.log(results);
+        // console.log(results);
         return Performer.create(data.performers);
     })
     .then(function (performers){
-        console.log(performers);
+        // console.log(performers);
+        return Movie.create(data.movies);
+    })
+    .then(function (movies){
+        return Promise.all([
+            Performer.findOne({name: 'Mark Hamill'}),
+            Movie.findOne({title: 'Star Wars - A New Hope'})
+        ]);
+    })
+    .then(function (results){
+        const mark = results[0];
+        const starWars = results[1];
+        starWars.cast.push(mark); // here we need the id from MongoDB document
+        return starWars.save();
     })
     .then(function (){
         process.exit();
     })
 ;
-
-
 
 
 
