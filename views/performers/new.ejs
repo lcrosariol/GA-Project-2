@@ -1,12 +1,12 @@
 <%- include('../partials/header') %>
 
-<p>Please first ensure that the Performer is not in the dropdown
-  <select>
-    <% performers.forEach(function(p) { %>
-      <option><%= p.name %></option>
-    <% }) %>
-  </select>
-</p>
+<div>Before adding, please ensure that the Performer is not in the following list:</div>
+<section id="badge-container">
+  <% performers.forEach(function(p) { %>
+    <article class="badge"><%= p.name %></article>
+  <% }) %>
+</section>
+
 <form id="add-performer-form" action="/performers" method="POST">
   <label>Name:</label>
   <input type="text" name="name">

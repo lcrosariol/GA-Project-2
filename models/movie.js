@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
-  content: String,
+  content: {type: String, required: true},
   rating: {type: Number, min: 1, max: 5, default: 5}
 }, {
   timestamps: true
@@ -18,11 +18,14 @@ const movieSchema = new Schema({
     default: function () {
       return new Date().getFullYear();
     }
-  }, 
+  },
   mpaaRating: String,
+  cast: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Performer'
+  }],
   nowShowing: { type: Boolean, default: false },
-  reviews: [reviewSchema],
-  cast: [{type: Schema.Types.ObjectId, ref: 'Performer'}]
+  reviews: [reviewSchema]
 }, {
   timestamps: true
 });
