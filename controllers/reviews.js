@@ -7,6 +7,11 @@ module.exports = {
 function create(req, res) {
   // Find the movie to embed the review within
   Movie.findById(req.params.id, function(err, movie) {
+
+    req.body.user = req.user._id;
+    req.body.userName = req.user.name;
+    req.body.userAvatar = req.user.avatar;
+
     // Push the subdoc for the review
     movie.reviews.push(req.body);
     // Always save the top-level document (not subdocs)
