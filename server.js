@@ -8,6 +8,7 @@ var passport = require('passport');
 require('dotenv').config();
 require('./config/database');
 require('./config/passport');
+var methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
 var moviesRouter = require('./routes/movies');
@@ -25,6 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
+
+app.use(methodOverride('_method'));
 
 // new code below
 app.use(session({
