@@ -13,7 +13,7 @@
   <div>Cast:</div>
   <ul>
     <%- flight.cast.map(p => 
-      `<li>${p.name} <small>${p.alt.toLocaleDateString()}</small></li>`
+      `<li>${p.name} <small>${p.alt}</small></li>`
     ).join('') %>
   </ul>
   <!-- end cast list -->

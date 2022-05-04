@@ -1,12 +1,26 @@
 const Flight = require('../models/flight');
 const Enroute = require('../models/enroute');
 
+
 module.exports = {
   index,
   show,
   new: newFlight,
   create
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function index(req, res) {
   Flight.find({}, function(err, flights) {
