@@ -2,21 +2,21 @@ require('./config/database');
 const Flight = require('./models/flight');
 const Enroute = require('./models/enroute');
 const data = require('./data');
-// const { promiseImpl } = require('ejs');
-// Movie.deleteMany({}).then(
+
+// flight.deleteMany({}).then(
 //     function (res){
 //         console.log(res);
 //         process.exit();
 //     }
 // );
 
-// Movie.deleteMany({})
+// flight.deleteMany({})
 //     .then(function(results) {
-//         console.log('Deleted movies: ', results);
-//         return Performer.deleteMany({});
+//         console.log('Deleted flights: ', results);
+//         return enroute.deleteMany({});
 //     })
 //     .then(function(results) {
-//         console.log('Deleted performers:', results);
+//         console.log('Deleted enroutes:', results);
 //     })
 //     .then(function() {
 //         process.exit();
@@ -31,7 +31,7 @@ Promise.all([p1, p2])
         return Enroute.create(data.enroutes);
     })
     .then(function (enroutes){
-        // console.log(performers);
+        // console.log(enroutes);
         return Flight.create(data.flights);
     })
     .then(function (flights){
@@ -48,16 +48,7 @@ Promise.all([p1, p2])
     })
     .then(function (){
         process.exit();
-    });
+    })
+;
 
-
-
-
-    // .then(function(enroutes) {
-    // console.log(enroutes);
-    // })
-    // .then(function() {
-    // console.log(data.enroutes);
-    // process.exit()
-    // })
 

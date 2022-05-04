@@ -12,7 +12,7 @@ function create(req, res) {
     req.body.user = req.user._id;
     req.body.userName = req.user.name;
     req.body.userAvatar = req.user.avatar;
-z
+
     // Push the subdoc for the review
     flight.reviews.push(req.body);
     // Always save the top-level document (not subdocs)

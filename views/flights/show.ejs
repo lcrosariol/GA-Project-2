@@ -1,42 +1,42 @@
 <%- include('../partials/header') %>
 
 <section id="show-page">
-  <div>Departure: </div>
-  <div><%= flight.departure %></div>
-  <div>Arrival: </div>
-  <div><%= flight.arrival %></div>
-  <div>VFR/IFR: </div>
-  <div><%= flight.vfrifr %></div>
-  <div>Has Fuel Services: </div>
-  <div><%= flight.fuel ? 'Yes' : 'No' %></div>
-  <!-- start enroute list -->
+  <div>Title: </div>
+  <div><%= flight.title %></div>
+  <div>Release Year: </div>
+  <div><%= flight.releaseYear %></div>
+  <div>Rating: </div>
+  <div><%= flight.mpaaRating %></div>
+  <div>Now Showing: </div>
+  <div><%= flight.nowShowing ? 'Yes' : 'Nope' %></div>
+  <!-- start cast list -->
   <div>Cast:</div>
   <ul>
     <%- flight.cast.map(p => 
-      `<li>${p.name} <small>${p.born.toLocaleDateString()}</small></li>`
+      `<li>${p.name} <small>${p.alt.toLocaleDateString()}</small></li>`
     ).join('') %>
   </ul>
-  <!-- end enroute list -->
+  <!-- end cast list -->
 </section>
-<!-- add to enroute form below this comment -->
+<!-- add to cast form below this comment -->
 <form id="add-per-to-cast" action="/flights/<%= flight._id %>/enroutes" method="POST">
   <select name="enrouteId">
     <%- enroutes.map(p => 
       `<option value="${p._id}">${p.name}</option>`
     ).join('') %>
   </select>
-  <button type="submit">Add Enroute/Alternate</button>
+  <button type="submit">Add to Cast</button>
 </form>
 
 <br><br>
-<h2>Notes</h2>
+<h2>Reviews</h2>
 
 <% if (user) {%>
   <form id="add-review-form" method="POST" action="/flights/<%= flight._id %>/reviews">
     <label>Review:</label>
-    <textarea departure="content"></textarea>
+    <textarea name="content"></textarea>
     <label>Rating:</label>
-    <select departure="rating">
+    <select name="rating">
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>

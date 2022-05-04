@@ -10,7 +10,7 @@ module.exports = {
 
 function index(req, res) {
   Flight.find({}, function(err, flights) {
-    res.render('flights/index', { title: 'All Flight Plans', flights });
+    res.render('flights/index', { title: 'All Flights', flights });
   });
 }
 
@@ -22,18 +22,18 @@ function show(req, res) {
       Enroute
         .find({_id: {$nin: flight.cast}})
         .sort('name').exec(function(err, enroutes) {
-          res.render('flights/show', { title: 'Flight Plan:', flight, enroutes });
+          res.render('flights/show', { title: 'Flight Detail', flight, enroutes });
         });
     });
 }
 
 function newFlight(req, res) {
-  res.render('flights/new', { title: 'Add Departure Airport:' });
+  res.render('flights/new', { title: '' });
 }
 
 function create(req, res) {
   // convert nowShowing's checkbox of nothing or "on" to boolean
-  req.body.fuel = !!req.body.fuel;
+  req.body.nowShowing = !!req.body.nowShowing;
   // ensure empty inputs are removed so that model's default values will work
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key];

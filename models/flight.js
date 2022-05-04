@@ -12,23 +12,22 @@ const reviewSchema = new Schema({
 });
 
 const flightSchema = new Schema({
-  departure: {
+  title: {
     type: String,
     required: true
   },
-  arrival: {
-    type: String,
-    required: true
-    // default: function () {
-    //   return new Date().getFullYear();
-    // }
+  releaseYear: {
+    type: Number,
+    default: function () {
+      return new Date().getFullYear();
+    }
   },
-  vfrifr: String,
+  mpaaRating: String,
   cast: [{
     type: Schema.Types.ObjectId,
-    ref: 'enroute'
+    ref: 'Enroute'
   }],
-  fuel: { type: Boolean, default: false },
+  nowShowing: { type: Boolean, default: false },
   reviews: [reviewSchema]
 }, {
   timestamps: true

@@ -15,7 +15,6 @@ var flightsRouter = require('./routes/flights');
 var reviewsRouter = require('./routes/reviews');
 var enroutesRouter = require('./routes/enroutes');
 
-
 var app = express();
 
 // view engine setup
@@ -49,7 +48,6 @@ app.use('/', indexRouter);
 app.use('/flights', flightsRouter);
 app.use('/', reviewsRouter);
 app.use('/', enroutesRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

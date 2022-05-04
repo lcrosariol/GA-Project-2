@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const flightsCtrl = require('../controllers/flights');
@@ -9,6 +10,5 @@ router.get('/', flightsCtrl.index);
 router.get('/new', isLoggedIn, flightsCtrl.new);
 router.get('/:id', flightsCtrl.show);
 router.post('/', isLoggedIn, flightsCtrl.create);
-// router.get('')
-// router.post('/', isLoggedIn, flightsCtrl.create);
+
 module.exports = router;
