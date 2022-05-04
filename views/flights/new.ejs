@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+<form id="new-form" action="/flights" method="POST">
+  <label>Departure:</label>
+  <input type="text" name="departure">
+  <label>Arrival:</label>
+  <input type="text" name="arrival">
+  <label>VFR/IFR</label>
+  <select name="ifrvfr">
+    <option value="VFR">VFR</option>
+    <option value="IFR">IFR</option>
+  </select>
+  <label>Fuel Services at Destination?</label>
+  <input type="checkbox" name="fuel" checked>
+  <input type="submit" value="Add">
+</form>
+
+<%- include('../partials/footer') %>

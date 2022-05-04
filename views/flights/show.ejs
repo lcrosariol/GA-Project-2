@@ -1,42 +1,42 @@
 <%- include('../partials/header') %>
 
 <section id="show-page">
-  <div>Title: </div>
-  <div><%= movie.title %></div>
-  <div>Release Year: </div>
-  <div><%= movie.releaseYear %></div>
-  <div>Rating: </div>
-  <div><%= movie.mpaaRating %></div>
-  <div>Now Showing: </div>
-  <div><%= movie.nowShowing ? 'Yes' : 'Nope' %></div>
-  <!-- start cast list -->
+  <div>Departure: </div>
+  <div><%= flight.departure %></div>
+  <div>Arrival: </div>
+  <div><%= flight.arrival %></div>
+  <div>VFR/IFR: </div>
+  <div><%= flight.vfrifr %></div>
+  <div>Has Fuel Services: </div>
+  <div><%= flight.fuel ? 'Yes' : 'No' %></div>
+  <!-- start enroute list -->
   <div>Cast:</div>
   <ul>
-    <%- movie.cast.map(p => 
+    <%- flight.cast.map(p => 
       `<li>${p.name} <small>${p.born.toLocaleDateString()}</small></li>`
     ).join('') %>
   </ul>
-  <!-- end cast list -->
+  <!-- end enroute list -->
 </section>
-<!-- add to cast form below this comment -->
-<form id="add-per-to-cast" action="/movies/<%= movie._id %>/performers" method="POST">
-  <select name="performerId">
-    <%- performers.map(p => 
+<!-- add to enroute form below this comment -->
+<form id="add-per-to-cast" action="/flights/<%= flight._id %>/enroutes" method="POST">
+  <select name="enrouteId">
+    <%- enroutes.map(p => 
       `<option value="${p._id}">${p.name}</option>`
     ).join('') %>
   </select>
-  <button type="submit">Add to Cast</button>
+  <button type="submit">Add Enroute/Alternate</button>
 </form>
 
 <br><br>
-<h2>Reviews</h2>
+<h2>Notes</h2>
 
 <% if (user) {%>
-  <form id="add-review-form" method="POST" action="/movies/<%= movie._id %>/reviews">
+  <form id="add-review-form" method="POST" action="/flights/<%= flight._id %>/reviews">
     <label>Review:</label>
-    <textarea name="content"></textarea>
+    <textarea departure="content"></textarea>
     <label>Rating:</label>
-    <select name="rating">
+    <select departure="rating">
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -47,7 +47,7 @@
   </form>
 <%}%>
 
-<% if (movie.reviews.length) { %>
+<% if (flight.reviews.length) { %>
   <table>
     <thead>
     <tr>
@@ -60,7 +60,7 @@
     </thead>
     <tbody>
     <% let total = 0 %>
-    <% movie.reviews.forEach(function(r) { %>
+    <% flight.reviews.forEach(function(r) { %>
       <% total += r.rating %>
       <tr>
         <td class="review-user"><img src="<%= r.userAvatar %>"><%= r.userName %></td>
@@ -78,7 +78,7 @@
     <% }); %>
     <tr>
       <td colspan="3"></td>
-      <td><strong><%= (total / movie.reviews.length).toFixed(1) %></strong></td>
+      <td><strong><%= (total / flight.reviews.length).toFixed(1) %></strong></td>
     </tr>
     </tbody>
   </table>

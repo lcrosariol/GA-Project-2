@@ -1,4 +1,4 @@
-const Movie = require('../models/movie');
+const Flight = require('../models/flight');
 
 module.exports = {
   create,
@@ -6,40 +6,40 @@ module.exports = {
 };
 
 function create(req, res) {
-  // Find the movie to embed the review within
-  Movie.findById(req.params.id, function(err, movie) {
+  // Find the flight to embed the review within
+  Flight.findById(req.params.id, function(err, flight) {
 
     req.body.user = req.user._id;
     req.body.userName = req.user.name;
     req.body.userAvatar = req.user.avatar;
-
+z
     // Push the subdoc for the review
-    movie.reviews.push(req.body);
+    flight.reviews.push(req.body);
     // Always save the top-level document (not subdocs)
-    movie.save(function(err) {
-      res.redirect(`/movies/${movie._id}`);
+    flight.save(function(err) {
+      res.redirect(`/flights/${flight._id}`);
     });
   });
 }
 
 function deleteReview(req, res, next) {
   // Note the cool "dot" syntax to query on the property of a subdoc
-  Movie.findOne({'reviews._id': req.params.id}).then(function(movie) {
+  Flight.findOne({'reviews._id': req.params.id}).then(function(flight) {
     // Find the review subdoc using the id method on Mongoose arrays
     // https://mongoosejs.com/docs/subdocs.html
-    const review = movie.reviews.id(req.params.id);
+    const review = flight.reviews.id(req.params.id);
     // Ensure that the review was created by the logged in user
-    if (!review.user.equals(req.user._id)) return res.redirect(`/movies/${movie._id}`);
+    if (!review.user.equals(req.user._id)) return res.redirect(`/flights/${flight._id}`);
     // Remove the review using the remove method of the subdoc
     review.remove();
-    // Save the updated movie
-    movie.save().then(function() {
-      // Redirect back to the movie's show view
-      res.redirect(`/movies/${movie._id}`);
+    // Save the updated flight
+    flight.save().then(function() {
+      // Redirect back to the flight's show view
+      res.redirect(`/flights/${flight._id}`);
     }).catch(function(err) {
       // Let Express display an error
       return next(err);
-      // res.redirect(`/movies/${movie._id}`);
+      // res.redirect(`/flights/${flight._id}`);
     });
   });
 }

@@ -1,8 +1,8 @@
 require('./config/database');
-const Movie = require('./models/movie');
-const Performer = require('./models/performer');
+const Flight = require('./models/flight');
+const Enroute = require('./models/enroute');
 const data = require('./data');
-
+// const { promiseImpl } = require('ejs');
 // Movie.deleteMany({}).then(
 //     function (res){
 //         console.log(res);
@@ -22,22 +22,22 @@ const data = require('./data');
 //         process.exit();
 //     });
 
-const p1 = Movie.deleteMany({});
-const p2 = Performer.deleteMany({});
+const p1 = Flight.deleteMany({});
+const p2 = Enroute.deleteMany({});
 
 Promise.all([p1, p2])
     .then(function (results){
         // console.log(results);
-        return Performer.create(data.performers);
+        return Enroute.create(data.enroutes);
     })
-    .then(function (performers){
+    .then(function (enroutes){
         // console.log(performers);
-        return Movie.create(data.movies);
+        return Flight.create(data.flights);
     })
-    .then(function (movies){
+    .then(function (flights){
         return Promise.all([
-            Performer.findOne({name: 'Mark Hamill'}),
-            Movie.findOne({title: 'Star Wars - A New Hope'})
+            Enroute.findOne({name: 'Mark Hamill'}),
+            Flight.findOne({title: 'Star Wars - A New Hope'})
         ]);
     })
     .then(function (results){
@@ -48,9 +48,16 @@ Promise.all([p1, p2])
     })
     .then(function (){
         process.exit();
-    })
-;
+    });
 
 
 
+
+    // .then(function(enroutes) {
+    // console.log(enroutes);
+    // })
+    // .then(function() {
+    // console.log(data.enroutes);
+    // process.exit()
+    // })
 

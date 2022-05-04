@@ -116,3 +116,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+#weather checker
+*.DS_Store

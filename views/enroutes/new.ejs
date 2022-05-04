@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+<div>Before adding, please ensure that the Airport ID is not in the following list:</div>
+<section id="badge-container">
+  <% enroutes.forEach(function(p) { %>
+    <article class="badge"><%= p.name %></article>
+  <% }) %>
+</section>
+
+<form id="add-performer-form" action="/enroutes" method="POST">
+  <label>Enroute/Alternate:</label>
+  <input type="text" name="name">
+  <label>ETA:</label>
+  <input type="text" name="born">
+  <input type="submit" value="Add Enroute/Alt">
+</form>
+
+<%- include('../partials/footer') %>

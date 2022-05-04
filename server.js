@@ -11,9 +11,10 @@ require('./config/passport');
 var methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
-var moviesRouter = require('./routes/movies');
+var flightsRouter = require('./routes/flights');
 var reviewsRouter = require('./routes/reviews');
-var performersRouter = require('./routes/performers');
+var enroutesRouter = require('./routes/enroutes');
+
 
 var app = express();
 
@@ -45,9 +46,10 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', indexRouter);
-app.use('/movies', moviesRouter);
+app.use('/flights', flightsRouter);
 app.use('/', reviewsRouter);
-app.use('/', performersRouter);
+app.use('/', enroutesRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

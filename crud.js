@@ -1,10 +1,10 @@
 require('./config/database')
-const Movie = require('./models/movie');
-const Performer = require('./models/performer');
+const Flight = require('./models/flight');
+const Enroute = require('./models/enroute');
 
 let m;
 let p;
 
-Movie.findOne({}, function(err, movie) {
-  m = movie;
+Flight.findOne({}, function(err, flight) {
+  m = flight;
 });

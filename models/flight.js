@@ -11,26 +11,27 @@ const reviewSchema = new Schema({
   timestamps: true
 });
 
-const movieSchema = new Schema({
-  title: {
+const flightSchema = new Schema({
+  departure: {
     type: String,
     required: true
   },
-  releaseYear: {
-    type: Number,
-    default: function () {
-      return new Date().getFullYear();
-    }
+  arrival: {
+    type: String,
+    required: true
+    // default: function () {
+    //   return new Date().getFullYear();
+    // }
   },
-  mpaaRating: String,
+  vfrifr: String,
   cast: [{
     type: Schema.Types.ObjectId,
-    ref: 'Performer'
+    ref: 'enroute'
   }],
-  nowShowing: { type: Boolean, default: false },
+  fuel: { type: Boolean, default: false },
   reviews: [reviewSchema]
 }, {
   timestamps: true
 });
 
-module.exports = mongoose.model('Movie', movieSchema);
+module.exports = mongoose.model('Flight', flightSchema);
